@@ -1,9 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
-class Teacher(models.Model):
-    first_name = models.CharField(max_length =128)
-    last_name = models.CharField(max_length =128)
+class Teacher(User):
+    bio = models.CharField(max_length = 500)
     
 class Course(models.Model):
     name = models.CharField(max_length =128)
@@ -14,10 +14,9 @@ class Subject(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete = models.PROTECT)
     start_date = models.DateField()
 
-class Student(models.Model):
-    first_name = models.CharField(max_length =128)
-    last_name = models.CharField(max_length =128)
-    email = models.CharField(max_length =128)
+class Student(User):
+    pass
+
 
 class Subscription(models.Model):
     subject_id = models.ForeignKey(Subject, on_delete = models.PROTECT)

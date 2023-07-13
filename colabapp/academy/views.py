@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Course
+from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
 
@@ -11,5 +12,12 @@ def v_index(request):
     return render(request, 'index.html',context)
 
 def v_course(request, course_id):
-    context = {}
+    context = {
+        'course': Course.objects.get(id = course_id)
+    }
     return render(request, 'course.html', context)
+
+@login_required(login_url = "/admin/login")
+@permission_required('academy.add_subscribe', login_url = "/admin/login")
+def v_subscribe(request, course_id):
+    pass
