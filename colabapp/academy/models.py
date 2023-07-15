@@ -19,6 +19,6 @@ class Student(User):
 
 
 class Subscription(models.Model):
-    subject_id = models.ForeignKey(Subject, on_delete = models.PROTECT)
-    student_id = models.ForeignKey(Student, on_delete = models.PROTECT)
+    subject = models.ForeignKey(Subject, on_delete = models.PROTECT)
+    student = models.ForeignKey(Student, on_delete = models.PROTECT)
     
